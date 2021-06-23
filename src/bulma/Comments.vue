@@ -31,7 +31,7 @@
                     </span>
                 </p>
                 <p class="control">
-                    <a class="button is-rounded is-small is-bold has-margin-left-medium"
+                    <a class="button is-rounded is-small is-bold ml-2"
                         @click="fetch()">
                         <span v-if="!compact">
                             {{ i18n('Reload') }}
@@ -43,7 +43,7 @@
                 </p>
             </slot>
         </div>
-        <div class="comments has-padding-small">
+        <div class="comments p-1">
             <comment v-if="comment"
                 :id="id"
                 is-new

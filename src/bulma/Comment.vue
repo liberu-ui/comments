@@ -1,5 +1,5 @@
 <template>
-    <div class="box has-background-light has-padding-large raises-on-hover">
+    <div class="box has-background-light p-3 raises-on-hover">
         <article class="media"
             @mouseover="controls = true"
             @mouseleave="controls = !confirmation ? false : controls">
@@ -10,7 +10,7 @@
                 </p>
             </figure>
             <div class="media-content">
-                <div class="has-margin-bottom-medium"
+                <div class="mb-2"
                     v-if="!isNew">
                     <a>
                         <strong>{{ comment.owner.person.name }}</strong>
@@ -30,7 +30,7 @@
                     </span>
                     <div class="is-pulled-right is-flex"
                         v-if="!isNew && !isEditing && controls">
-                        <a class="button is-naked is-small has-margin-right-small"
+                        <a class="button is-naked is-small mr-1"
                             @click="originalBody = comment.body;"
                             v-if="comment.isEditable">
                             <span class="icon is-small">
@@ -57,8 +57,8 @@
                 <div v-else>
                     <inputor :comment="comment"
                         v-on="$listeners"/>
-                    <div class="has-margin-top-medium has-text-right">
-                        <a class="button is-rounded is-bold has-margin-right-small is-small action"
+                    <div class="mt-2 has-text-right">
+                        <a class="button is-rounded is-bold mr-1 is-small action"
                             @click="isNew ? $emit('cancel-add') : cancelAdd()">
                             <span>
                                 {{ i18n('Cancel') }}
