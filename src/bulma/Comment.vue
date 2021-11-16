@@ -55,8 +55,7 @@
                     v-html="highlightTaggedUsers"
                     v-if="!isEditing && !isNew"/>
                 <div v-else>
-                    <inputor :comment="comment"
-                        v-on="$listeners"/>
+                    <inputor :comment="comment"/>
                     <div class="mt-2 has-text-right">
                         <a class="button is-rounded is-bold mr-1 is-small action"
                             @click="isNew ? $emit('cancel-add') : cancelAdd()">
