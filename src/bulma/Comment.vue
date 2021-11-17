@@ -92,6 +92,7 @@
 <script>
 import { VTooltip } from 'v-tooltip';
 import { mapState } from 'vuex';
+import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faPencilAlt, faTrashAlt, faCheck, faBan,
@@ -108,7 +109,7 @@ export default {
 
     directives: { tooltip: VTooltip },
 
-    components: { Inputor, Confirmation },
+    components: { Fa, Inputor, Confirmation },
 
     inject: ['i18n', 'route'],
 

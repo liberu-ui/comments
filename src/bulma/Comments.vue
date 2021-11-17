@@ -64,6 +64,7 @@
 </template>
 
 <script>
+import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlus, faSync, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { mapState } from 'vuex';
@@ -74,7 +75,7 @@ library.add(faPlus, faSync, faSearch);
 export default {
     name: 'Comments',
 
-    components: { Comment },
+    components: { Fa, Comment },
 
     inject: ['errorHandler', 'i18n', 'route'],
 
