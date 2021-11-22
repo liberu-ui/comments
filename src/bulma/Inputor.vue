@@ -1,5 +1,5 @@
 <template>
-    <div class="animated fadeIn atwho-wrapper"
+    <div class="animate__animated animate__fadeIn atwho-wrapper"
         @keyup="filter"
         @keydown.up="onUp"
         @keydown.down="onDown"
@@ -41,6 +41,7 @@
 </template>
 
 <script>
+import 'animate.css';
 import { mapState } from 'vuex';
 import debounce from 'lodash/debounce';
 import getCaretCoordinates from 'textarea-caret';
