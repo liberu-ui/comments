@@ -1,47 +1,49 @@
 <template>
-    <div class="animate__animated animate__fadeIn atwho-wrapper"
-        @keyup="filter"
-        @keydown.up="onUp"
-        @keydown.down="onDown"
-        @keydown.enter="onEnter">
-        <div v-show="items.length"
-            v-click-outside="hide"
-            class="atwho dropdown-menu">
-            <div class="dropdown-content">
-                <a v-for="(item, index) in items"
-                    :key="index"
-                    :class="['dropdown-item', { 'is-active': index === position}]"
-                    @mousemove="position = index"
-                    @click="selectItem">
-                    <article class="media">
-                        <div class="media-left">
-                            <figure class="image is-24x24">
-                                <img class="is-rounded"
-                                    :src="'/api/core/avatars/' + item.avatar.id">
-                            </figure>
-                        </div>
-                        <div class="media-content">
-                            <div class="content"
-                                v-html="highlight(item.person.name)"/>
-                        </div>
-                    </article>
-                </a>
+    <fade>
+        <div class="atwho-wrapper"
+            @keyup="filter"
+            @keydown.up="onUp"
+            @keydown.down="onDown"
+            @keydown.enter="onEnter">
+            <div v-show="items.length"
+                v-click-outside="hide"
+                class="atwho dropdown-menu">
+                <div class="dropdown-content">
+                    <a v-for="(item, index) in items"
+                        :key="index"
+                        :class="['dropdown-item', { 'is-active': index === position}]"
+                        @mousemove="position = index"
+                        @click="selectItem">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-24x24">
+                                    <img class="is-rounded"
+                                        :src="'/api/core/avatars/' + item.avatar.id">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content"
+                                    v-html="highlight(item.person.name)"/>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <textarea v-model="comment.body"
+                        v-focus
+                        class="textarea vue-comment"
+                        :placeholder="i18n('Type a new comment')"
+                        @keyup.shift.enter="$emit('save')"/>
+                </p>
             </div>
         </div>
-        <div class="field">
-            <p class="control">
-                <textarea v-model="comment.body"
-                    v-focus
-                    class="textarea vue-comment"
-                    :placeholder="i18n('Type a new comment')"
-                    @keyup.shift.enter="$emit('save')"/>
-            </p>
-        </div>
-    </div>
+    </fade>
 </template>
 
 <script>
-import 'animate.css';
+import { Fade } from '@enso-ui/transitions';
 import { mapState } from 'vuex';
 import debounce from 'lodash/debounce';
 import getCaretCoordinates from 'textarea-caret';
@@ -53,6 +55,8 @@ export default {
     directives: { focus, clickOutside },
 
     inject: ['errorHandler', 'i18n', 'route'],
+
+    components: { Fade },
 
     props: {
         comment: {
