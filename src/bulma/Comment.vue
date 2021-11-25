@@ -90,7 +90,6 @@
 </template>
 
 <script>
-import { VTooltip } from 'v-tooltip';
 import { mapState } from 'vuex';
 import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -106,8 +105,6 @@ library.add(faPencilAlt, faTrashAlt, faCheck, faBan);
 
 export default {
     name: 'Comment',
-
-    directives: { tooltip: VTooltip },
 
     components: { Fa, Inputor, Confirmation },
 
