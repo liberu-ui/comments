@@ -129,6 +129,8 @@ export default {
         },
     },
 
+    emits: ['cancel-add', 'cancel-edit', 'delete', 'save'],
+
     data: () => ({
         controls: false,
         confirmation: false,

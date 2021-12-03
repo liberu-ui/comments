@@ -98,6 +98,8 @@ export default {
         },
     },
 
+    emits: ['update'],
+
     data: (v) => ({
         comments: [],
         comment: null,

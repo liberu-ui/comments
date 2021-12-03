@@ -65,6 +65,8 @@ export default {
         },
     },
 
+    emits: ['save'],
+
     data: () => ({
         items: [],
         position: null,
