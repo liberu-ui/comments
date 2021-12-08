@@ -6,6 +6,7 @@
             <figure class="media-left">
                 <p class="image is-32x32">
                     <img class="is-rounded"
+                        alt="avatar"
                         :src="route('core.avatars.show', comment.owner.avatar.id)">
                 </p>
             </figure>
@@ -15,12 +16,12 @@
                     <a>
                         <strong>{{ comment.owner.person.name }}</strong>
                     </a>
-                    <span class="has-text-muted"
+                    <span class="has-text-muted ml-1"
                         v-tooltip="dateFormat(commentedAt)"
                         v-if="humanReadableDates">
                         {{ timeFromNow(commentedAt) }} {{ i18n('ago') }}
                     </span>
-                    <span class="has-text-muted"
+                    <span class="has-text-muted ml-1"
                         v-tooltip="`${timeFromNow(commentedAt)} ${i18n('ago')}`"
                         v-else>
                         {{ dateFormat(commentedAt) }}

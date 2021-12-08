@@ -51,7 +51,7 @@
                 :comment="comment"
                 :index="-1"
                 @cancel-add="comment = null"
-                @save="add()"/>
+                @save="add"/>
             <comment v-for="(comment, index) in filteredComments"
                 :key="comment.id"
                 :comment="comment"
