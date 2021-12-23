@@ -77,7 +77,7 @@ export default {
 
     components: { Fa, Comment },
 
-    inject: ['errorHandler', 'i18n', 'route'],
+    inject: ['errorHandler', 'http', 'i18n', 'route'],
 
     props: {
         id: {
@@ -144,7 +144,7 @@ export default {
         fetch() {
             this.loading = true;
 
-            axios.get(
+            this.http.get(
                 this.route('core.comments.index'),
                 { params: this.params },
             ).then(({ data }) => {
@@ -176,7 +176,7 @@ export default {
 
             this.loading = true;
 
-            axios.post(
+            this.http.post(
                 this.route('core.comments.store'),
                 this.postParams(),
             ).then(({ data }) => {
@@ -199,7 +199,7 @@ export default {
             comment.path = this.path;
             this.loading = true;
 
-            axios.patch(
+            this.http.patch(
                 this.route('core.comments.update', comment.id),
                 comment,
             ).then(({ data }) => {
@@ -217,7 +217,7 @@ export default {
         destroy(index) {
             this.loading = true;
 
-            axios.delete(this.route('core.comments.destroy', this.comments[index].id))
+            this.http.delete(this.route('core.comments.destroy', this.comments[index].id))
                 .then(() => {
                     this.comments.splice(index, 1);
                     this.$emit('update');

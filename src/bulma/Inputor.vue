@@ -54,7 +54,7 @@ export default {
 
     directives: { focus, clickOutside },
 
-    inject: ['errorHandler', 'i18n', 'route'],
+    inject: ['errorHandler', 'http', 'i18n', 'route'],
 
     components: { Fade },
 
@@ -100,7 +100,7 @@ export default {
 
     methods: {
         fetch() {
-            axios.get(this.route('core.comments.users'), {
+            this.http.get(this.route('core.comments.users'), {
                 params: { query: this.query, paginate: 6 },
             }).then(({ data }) => {
                 this.items = data
