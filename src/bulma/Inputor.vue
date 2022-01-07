@@ -54,9 +54,9 @@ export default {
 
     directives: { focus, clickOutside },
 
-    inject: ['errorHandler', 'http', 'i18n', 'route'],
-
     components: { Fade },
+
+    inject: ['errorHandler', 'http', 'i18n', 'route'],
 
     props: {
         comment: {

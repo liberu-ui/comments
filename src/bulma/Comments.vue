@@ -52,12 +52,12 @@
                 :index="-1"
                 @cancel-add="comment = null"
                 @save="add"/>
-            <comment v-for="(comment, index) in filteredComments"
-                :key="comment.id"
-                :comment="comment"
+            <comment v-for="(filteredComment, index) in filteredComments"
+                :key="filteredComment.id"
+                :comment="filteredComment"
                 :index="index"
                 :human-readable-dates="humanReadableDates"
-                @save="update(comment)"
+                @save="update(filteredComment)"
                 @delete="destroy(index)"/>
         </div>
     </div>
@@ -100,7 +100,7 @@ export default {
 
     emits: ['update'],
 
-    data: (v) => ({
+    data: v => ({
         comments: [],
         comment: null,
         loading: false,
