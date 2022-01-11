@@ -51,19 +51,20 @@
                 :comment="comment"
                 :index="-1"
                 @cancel-add="comment = null"
-                @save="add()"/>
-            <comment v-for="(comment, index) in filteredComments"
-                :key="comment.id"
-                :comment="comment"
+                @save="add"/>
+            <comment v-for="(filteredComment, index) in filteredComments"
+                :key="filteredComment.id"
+                :comment="filteredComment"
                 :index="index"
                 :human-readable-dates="humanReadableDates"
-                @save="update(comment)"
+                @save="update(filteredComment)"
                 @delete="destroy(index)"/>
         </div>
     </div>
 </template>
 
 <script>
+import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faPlus, faSync, faSearch } from '@fortawesome/free-solid-svg-icons';
 import { mapState } from 'vuex';
@@ -74,9 +75,9 @@ library.add(faPlus, faSync, faSearch);
 export default {
     name: 'Comments',
 
-    components: { Comment },
+    components: { Fa, Comment },
 
-    inject: ['errorHandler', 'i18n', 'route'],
+    inject: ['errorHandler', 'http', 'i18n', 'route'],
 
     props: {
         id: {
@@ -97,7 +98,9 @@ export default {
         },
     },
 
-    data: (v) => ({
+    emits: ['update'],
+
+    data: v => ({
         comments: [],
         comment: null,
         loading: false,
@@ -141,7 +144,7 @@ export default {
         fetch() {
             this.loading = true;
 
-            axios.get(
+            this.http.get(
                 this.route('core.comments.index'),
                 { params: this.params },
             ).then(({ data }) => {
@@ -173,7 +176,7 @@ export default {
 
             this.loading = true;
 
-            axios.post(
+            this.http.post(
                 this.route('core.comments.store'),
                 this.postParams(),
             ).then(({ data }) => {
@@ -196,7 +199,7 @@ export default {
             comment.path = this.path;
             this.loading = true;
 
-            axios.patch(
+            this.http.patch(
                 this.route('core.comments.update', comment.id),
                 comment,
             ).then(({ data }) => {
@@ -214,7 +217,7 @@ export default {
         destroy(index) {
             this.loading = true;
 
-            axios.delete(this.route('core.comments.destroy', this.comments[index].id))
+            this.http.delete(this.route('core.comments.destroy', this.comments[index].id))
                 .then(() => {
                     this.comments.splice(index, 1);
                     this.$emit('update');

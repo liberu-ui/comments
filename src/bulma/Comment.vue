@@ -6,6 +6,7 @@
             <figure class="media-left">
                 <p class="image is-32x32">
                     <img class="is-rounded"
+                        alt="avatar"
                         :src="route('core.avatars.show', comment.owner.avatar.id)">
                 </p>
             </figure>
@@ -15,12 +16,12 @@
                     <a>
                         <strong>{{ comment.owner.person.name }}</strong>
                     </a>
-                    <span class="has-text-muted"
+                    <span class="has-text-muted ml-1"
                         v-tooltip="dateFormat(commentedAt)"
                         v-if="humanReadableDates">
                         {{ timeFromNow(commentedAt) }} {{ i18n('ago') }}
                     </span>
-                    <span class="has-text-muted"
+                    <span class="has-text-muted ml-1"
                         v-tooltip="`${timeFromNow(commentedAt)} ${i18n('ago')}`"
                         v-else>
                         {{ dateFormat(commentedAt) }}
@@ -55,8 +56,8 @@
                     v-html="highlightTaggedUsers"
                     v-if="!isEditing && !isNew"/>
                 <div v-else>
-                    <inputor :comment="comment"
-                        v-on="$listeners"/>
+                    <inputor v-bind="$attrs"
+                         :comment="comment"/>
                     <div class="mt-2 has-text-right">
                         <a class="button is-rounded is-bold mr-1 is-small action"
                             @click="isNew ? $emit('cancel-add') : cancelAdd()">
@@ -91,8 +92,8 @@
 </template>
 
 <script>
-import { VTooltip } from 'v-tooltip';
 import { mapState } from 'vuex';
+import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faPencilAlt, faTrashAlt, faCheck, faBan,
@@ -107,9 +108,7 @@ library.add(faPencilAlt, faTrashAlt, faCheck, faBan);
 export default {
     name: 'Comment',
 
-    directives: { tooltip: VTooltip },
-
-    components: { Inputor, Confirmation },
+    components: { Fa, Inputor, Confirmation },
 
     inject: ['i18n', 'route'],
 
@@ -131,6 +130,8 @@ export default {
             default: false,
         },
     },
+
+    emits: ['cancel-add', 'cancel-edit', 'delete', 'save'],
 
     data: () => ({
         controls: false,

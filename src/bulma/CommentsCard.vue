@@ -2,13 +2,13 @@
     <card collapsible
         :collapsed="collapsed">
         <card-header class="has-background-light">
-            <template v-slot:title>
+            <template #title>
                 <span class="icon is-small mr-1">
                     <fa :icon="icon"/>
                 </span>
                 {{ displayTitle }}
             </template>
-            <template v-slot:controls>
+            <template #controls>
                 <card-refresh @refresh="fetch"/>
                 <card-badge :label="count"/>
                 <card-collapse/>
@@ -26,6 +26,7 @@
 
 <script>
 import { mapState } from 'vuex';
+import { FontAwesomeIcon as Fa } from '@fortawesome/vue-fontawesome';
 import { library } from '@fortawesome/fontawesome-svg-core';
 import { faComments, faPlusSquare } from '@fortawesome/free-solid-svg-icons';
 import {
@@ -39,7 +40,7 @@ export default {
     name: 'CommentsCard',
 
     components: {
-        Card, CardHeader, CardRefresh, CardCollapse, CardBadge, CardContent, Comments,
+        Fa, Card, CardHeader, CardRefresh, CardCollapse, CardBadge, CardContent, Comments,
     },
 
     inject: ['i18n'],

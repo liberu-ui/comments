@@ -1,46 +1,49 @@
 <template>
-    <div class="animated fadeIn atwho-wrapper"
-        @keyup="filter"
-        @keydown.up="onUp"
-        @keydown.down="onDown"
-        @keydown.enter="onEnter">
-        <div v-show="items.length"
-            v-click-outside="hide"
-            class="atwho dropdown-menu">
-            <div class="dropdown-content">
-                <a v-for="(item, index) in items"
-                    :key="index"
-                    :class="['dropdown-item', { 'is-active': index === position}]"
-                    @mousemove="position = index"
-                    @click="selectItem">
-                    <article class="media">
-                        <div class="media-left">
-                            <figure class="image is-24x24">
-                                <img class="is-rounded"
-                                    :src="'/api/core/avatars/' + item.avatar.id">
-                            </figure>
-                        </div>
-                        <div class="media-content">
-                            <div class="content"
-                                v-html="highlight(item.person.name)"/>
-                        </div>
-                    </article>
-                </a>
+    <fade>
+        <div class="atwho-wrapper"
+            @keyup="filter"
+            @keydown.up="onUp"
+            @keydown.down="onDown"
+            @keydown.enter="onEnter">
+            <div v-show="items.length"
+                v-click-outside="hide"
+                class="atwho dropdown-menu">
+                <div class="dropdown-content">
+                    <a v-for="(item, index) in items"
+                        :key="index"
+                        :class="['dropdown-item', { 'is-active': index === position}]"
+                        @mousemove="position = index"
+                        @click="selectItem">
+                        <article class="media">
+                            <div class="media-left">
+                                <figure class="image is-24x24">
+                                    <img class="is-rounded"
+                                        :src="'/api/core/avatars/' + item.avatar.id">
+                                </figure>
+                            </div>
+                            <div class="media-content">
+                                <div class="content"
+                                    v-html="highlight(item.person.name)"/>
+                            </div>
+                        </article>
+                    </a>
+                </div>
+            </div>
+            <div class="field">
+                <p class="control">
+                    <textarea v-model="comment.body"
+                        v-focus
+                        class="textarea vue-comment"
+                        :placeholder="i18n('Type a new comment')"
+                        @keyup.shift.enter="$emit('save')"/>
+                </p>
             </div>
         </div>
-        <div class="field">
-            <p class="control">
-                <textarea v-model="comment.body"
-                    v-focus
-                    class="textarea vue-comment"
-                    :placeholder="i18n('Type a new comment')"
-                    @keyup.shift.enter="$emit('save')"/>
-            </p>
-        </div>
-    </div>
+    </fade>
 </template>
 
 <script>
+import { Fade } from '@enso-ui/transitions';
 import { mapState } from 'vuex';
 import debounce from 'lodash/debounce';
 import getCaretCoordinates from 'textarea-caret';
@@ -51,7 +54,9 @@ export default {
 
     directives: { focus, clickOutside },
 
-    inject: ['errorHandler', 'i18n', 'route'],
+    components: { Fade },
+
+    inject: ['errorHandler', 'http', 'i18n', 'route'],
 
     props: {
         comment: {
@@ -59,6 +64,8 @@ export default {
             required: true,
         },
     },
+
+    emits: ['save'],
 
     data: () => ({
         items: [],
@@ -93,7 +100,7 @@ export default {
 
     methods: {
         fetch() {
-            axios.get(this.route('core.comments.users'), {
+            this.http.get(this.route('core.comments.users'), {
                 params: { query: this.query, paginate: 6 },
             }).then(({ data }) => {
                 this.items = data
