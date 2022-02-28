@@ -1,6 +1,6 @@
 {
   "name": "@enso-ui/comments",
-  "version": "3.0.15",
+  "version": "4.0.0",
   "description": "Comments",
   "main": "index.js",
   "scripts": {
