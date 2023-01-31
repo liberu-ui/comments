@@ -1,5 +1,5 @@
 <template>
-    <div class="box has-background-light p-3 raises-on-hover">
+    <div class="box has-background-light p-2 raises-on-hover">
         <article class="media"
             @mouseover="controls = true"
             @mouseleave="controls = !confirmation ? false : controls">
