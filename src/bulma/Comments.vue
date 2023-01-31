@@ -232,5 +232,9 @@ export default {
     .comments-wrapper .comments {
         max-height: 500px;
         overflow-y: auto;
+
+        .box:not(:last-child) {
+            margin-bottom: 0.5rem;
+        }
     }
 </style>
