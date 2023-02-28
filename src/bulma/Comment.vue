@@ -197,7 +197,7 @@ export default {
     .media {
         border-radius: inherit;
         .comment-body {
-            word-break: break-all;
+            word-break: break-word;
         }
 
         .media-content {
