@@ -98,9 +98,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import {
     faPencilAlt, faTrashAlt, faCheck, faBan,
 } from '@fortawesome/free-solid-svg-icons';
-import Confirmation from '@enso-ui/confirmation/bulma';
-import format from '@enso-ui/ui/src/modules/plugins/date-fns/format';
-import formatDistance from '@enso-ui/ui/src/modules/plugins/date-fns/formatDistance';
+import Confirmation from '@liberu-ui/confirmation/bulma';
+import format from '@liberu-ui/ui/src/modules/plugins/date-fns/format';
+import formatDistance from '@liberu-ui/ui/src/modules/plugins/date-fns/formatDistance';
 import Inputor from './Inputor.vue';
 
 library.add(faPencilAlt, faTrashAlt, faCheck, faBan);

@@ -43,11 +43,11 @@
 </template>
 
 <script>
-import { Fade } from '@enso-ui/transitions';
+import { Fade } from '@liberu-ui/transitions';
 import { mapState } from 'vuex';
 import debounce from 'lodash/debounce';
 import getCaretCoordinates from 'textarea-caret';
-import { focus, clickOutside } from '@enso-ui/directives';
+import { focus, clickOutside } from '@liberu-ui/directives';
 
 export default {
     name: 'Inputor',
