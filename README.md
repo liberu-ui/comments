@@ -1,10 +1,10 @@
 # Comments
 
-![npm license](https://img.shields.io/npm/l/@enso-ui/comments.svg) 
-![npm download](https://img.shields.io/npm/dm/@enso-ui/comments.svg) 
-![GitHub top language](https://img.shields.io/github/languages/top/enso-ui/comments.svg) 
-![GitHub issues](https://img.shields.io/github/issues/enso-ui/comments.svg) 
-![npm version](https://img.shields.io/npm/v/@enso-ui/comments.svg) 
+![npm license](https://img.shields.io/npm/l/@liberu-ui/comments.svg) 
+![npm download](https://img.shields.io/npm/dm/@liberu-ui/comments.svg) 
+![GitHub top language](https://img.shields.io/github/languages/top/liberu-ui/comments.svg) 
+![GitHub issues](https://img.shields.io/github/issues/liberu-ui/comments.svg) 
+![npm version](https://img.shields.io/npm/v/@liberu-ui/comments.svg) 
 
 Comments
 
