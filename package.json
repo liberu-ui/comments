@@ -1,6 +1,6 @@
 {
   "name": "@liberu-ui/comments",
-  "version": "4.0.5",
+  "version": "4.0.6",
   "description": "Comments",
   "main": "index.ts",
   "scripts": {
